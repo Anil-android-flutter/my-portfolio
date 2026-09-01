@@ -1,887 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anil Kumar Reddy – Lead Mobile Engineer</title>
-<meta name="description" content="Lead Mobile Engineer with 9+ years of experience in Flutter, Android & Firebase. Available for freelance and full-time roles.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #0A0A0F;
-    --bg2: #111118;
-    --bg3: #18181f;
-    --card: #16161e;
-    --card2: #1e1e28;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.12);
-    --accent: #6EE7B7;
-    --accent2: #38BDF8;
-    --accent3: #F472B6;
-    --text: #F0F0F5;
-    --muted: #8888A0;
-    --muted2: #B0B0C8;
-    --tag-bg: rgba(110,231,183,0.08);
-    --tag-color: #6EE7B7;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    font-size: 15px;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
-
-  /* NAV */
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,10,15,0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 0;
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-
-  /* HERO */
-  .hero {
-    padding: 80px 0 64px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(110,231,183,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: 40%;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(56,189,248,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(110,231,183,0.1);
-    border: 1px solid rgba(110,231,183,0.2);
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 14px;
-    border-radius: 100px;
-    letter-spacing: 0.04em;
-    margin-bottom: 24px;
-  }
-  .badge-dot {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .hero-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(40px, 8vw, 72px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 10px;
-    color: var(--text);
-  }
-  .hero-name span {
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-title {
-    font-size: 18px;
-    color: var(--muted2);
-    font-weight: 300;
-    margin-bottom: 24px;
-    letter-spacing: 0.01em;
-  }
-
-  .hero-desc {
-    font-size: 15px;
-    color: var(--muted);
-    max-width: 600px;
-    line-height: 1.85;
-    margin-bottom: 40px;
-  }
-
-  .stats {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-  }
-  .stat-num {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat-num span { color: var(--accent); }
-  .stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-
-  .cta-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: #0A0A0F;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    padding: 12px 24px;
-    border-radius: 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: var(--muted2);
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    padding: 12px 24px;
-    border-radius: 10px;
-    text-decoration: none;
-    border: 1px solid var(--border2);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s, transform 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--muted); color: var(--text); transform: translateY(-1px); }
-
-  /* SECTIONS */
-  section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type { border-bottom: none; }
-
-  .sec-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .sec-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(24px, 4vw, 36px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
-    color: var(--text);
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  @media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
-
-  .proj-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 28px;
-    transition: border-color 0.25s, transform 0.25s;
-  }
-  .proj-card:hover { border-color: var(--border2); transform: translateY(-3px); }
-
-  .proj-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: start;
-  }
-  @media (max-width: 640px) {
-    .proj-card.featured {
-      grid-column: span 1;
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .proj-icon {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    margin-bottom: 18px;
-  }
-  .proj-icon.green { background: rgba(110,231,183,0.1); }
-  .proj-icon.blue  { background: rgba(56,189,248,0.1); }
-  .proj-icon.pink  { background: rgba(244,114,182,0.1); }
-  .proj-icon.amber { background: rgba(251,191,36,0.1); }
-
-  .proj-type {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .proj-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
-  }
-  .proj-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 18px;
-  }
-  .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tag {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 100px;
-    background: var(--tag-bg);
-    color: var(--tag-color);
-    border: 1px solid rgba(110,231,183,0.15);
-  }
-  .tag.blue  { background: rgba(56,189,248,0.08);  color: #38BDF8; border-color: rgba(56,189,248,0.15); }
-  .tag.pink  { background: rgba(244,114,182,0.08); color: #F472B6; border-color: rgba(244,114,182,0.15); }
-  .tag.amber { background: rgba(251,191,36,0.08);  color: #FBBF24; border-color: rgba(251,191,36,0.15); }
-
-  .proj-highlights {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .proj-highlights li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--muted2);
-    line-height: 1.6;
-  }
-  .proj-highlights li::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .freelance-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(244,114,182,0.08);
-    border: 1px solid rgba(244,114,182,0.2);
-    color: var(--accent3);
-    font-size: 11px;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 100px;
-    margin-bottom: 16px;
-  }
-
-  /* EXPERIENCE TIMELINE */
-  .exp-list { display: flex; flex-direction: column; }
-
-  .exp-item {
-    display: grid;
-    grid-template-columns: 28px 1fr;
-    gap: 0 20px;
-    padding-bottom: 48px;
-  }
-  .exp-item:last-child { padding-bottom: 0; }
-
-  .exp-line {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .exp-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px rgba(110,231,183,0.2);
-    flex-shrink: 0;
-    margin-top: 5px;
-  }
-  .exp-dot.dim {
-    background: var(--border2);
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
-  }
-  .exp-connector {
-    width: 1px;
-    flex: 1;
-    background: var(--border);
-    margin-top: 10px;
-  }
-
-  .exp-period {
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 4px;
-  }
-  .exp-role {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  .exp-company {
-    font-size: 13px;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-  .exp-points {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    margin-bottom: 14px;
-  }
-  .exp-points li {
-    font-size: 13px;
-    color: var(--muted2);
-    line-height: 1.65;
-    padding-left: 16px;
-    position: relative;
-  }
-  .exp-points li::before {
-    content: '·';
-    position: absolute;
-    left: 3px;
-    color: var(--accent);
-    font-size: 18px;
-    top: -2px;
-  }
-
-  .award-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(251,191,36,0.08);
-    border: 1px solid rgba(251,191,36,0.2);
-    color: #FBBF24;
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-top: 10px;
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 14px;
-  }
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-  }
-  .skill-cat {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
-  .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .skill-pill {
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    background: var(--bg3);
-    color: var(--muted2);
-    border: 1px solid var(--border);
-  }
-
-  /* CONTACT */
-  .contact-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 56px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-card::before {
-    content: '';
-    position: absolute;
-    top: -80px; left: 50%; transform: translateX(-50%);
-    width: 400px; height: 240px;
-    background: radial-gradient(ellipse, rgba(110,231,183,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .contact-heading {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(24px, 4vw, 36px);
-    font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .contact-sub {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 36px;
-  }
-  .contact-links {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 22px;
-    border-radius: 10px;
-    font-size: 13px;
-    text-decoration: none;
-    font-weight: 400;
-    transition: all 0.2s;
-    border: 1px solid var(--border2);
-    color: var(--muted2);
-  }
-  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-  .contact-link.primary {
-    background: rgba(110,231,183,0.1);
-    border-color: rgba(110,231,183,0.3);
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* FOOTER */
-  .footer {
-    text-align: center;
-    padding: 40px 0;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 480px) {
-    .stats { gap: 24px; }
-    .contact-card { padding: 36px 20px; }
-    .nav-links { gap: 16px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anil Kumar Reddy — Lead Mobile Engineer | Flutter, Android &amp; .NET</title>
+  <meta name="description" content="Lead Mobile Engineer with 10+ years building production apps — Flutter, Android, React Native, .NET and web, from architecture to store launch.">
+  <link rel="canonical" href="https://anil-android-flutter.github.io/my-portfolio/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Anil Kumar Reddy — Lead Mobile Engineer">
+  <meta property="og:description" content="Flutter · Android · Firebase. 10+ years shipping production mobile apps.">
+  <meta property="og:url" content="https://anil-android-flutter.github.io/my-portfolio/">
+  <meta property="og:image" content="https://anil-android-flutter.github.io/my-portfolio/assets/tgk-feature.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+  <a class="skip" href="#content">Skip to content</a>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="wrap nav-inner">
-    <a href="#" class="nav-logo">Anil Kumar Reddy</a>
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="wrap">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="badge">
-      <span class="badge-dot"></span>
-      Available for freelance &amp; full-time roles
-    </div>
-    <h1 class="hero-name">Lead Mobile<br><span>Engineer</span></h1>
-    <p class="hero-title">Flutter · Android · Firebase · AI-assisted Development</p>
-    <p class="hero-desc">
-      9+ years building production-grade mobile apps across food delivery, education, transport, and finance. I own the full stack — architecture, APIs, Firebase, deployment, and team leadership. Currently freelancing and shipping products fast using AI-assisted workflows.
-    </p>
-    <div class="stats">
-      <div class="stat-item">
-        <div class="stat-num">9<span>+</span></div>
-        <div class="stat-label">Years Experience</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">10<span>+</span></div>
-        <div class="stat-label">Apps Shipped</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">2<span>×</span></div>
-        <div class="stat-label">Best Employee Award</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">1<span>wk</span></div>
-        <div class="stat-label">MVP Build Time</div>
-      </div>
-    </div>
-    <div class="cta-row">
-      <a href="mailto:anilkumarreddy.c17@gmail.com" class="btn-primary">✉ Hire Me</a>
-      <a href="https://www.linkedin.com/in/c-anil-kumar-reddy-286482154/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
-    </div>
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-mark">A</div>
+    <div class="loader-bar"><i></i></div>
+    <p>Lead Mobile Engineer</p>
   </div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="sec-label">Work</div>
-    <div class="sec-title">Featured Projects</div>
-    <div class="projects-grid">
+  <div class="fx" aria-hidden="true">
+    <div class="fx-vignette"></div>
+    <div class="fx-wallpaper"></div>
+    <div class="fx-orbs"></div>
+    <div class="fx-grain"></div>
+    <div class="fx-spot" id="spot"></div>
+  </div>
 
-      <!-- My Kitchen – Featured -->
-      <div class="proj-card featured">
-        <div>
-          <div class="proj-icon green">🍽</div>
-          <div class="proj-type">Professional · Lead Engineer</div>
-          <div class="proj-name">My Kitchen</div>
-          <div class="proj-desc">Geo-location based food delivery and dine-in app with multi-country support. Led full architecture, team management, and production delivery end-to-end at The Binary Search.</div>
-          <div class="proj-tags">
-            <span class="tag">Flutter</span>
-            <span class="tag blue">Firebase</span>
-            <span class="tag">Clean Architecture</span>
-            <span class="tag blue">GPS</span>
-            <span class="tag">Multi-country</span>
+  <div class="menu-scrim" id="menuScrim" hidden></div>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Home">A</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    <nav class="nav-links" aria-label="Primary">
+      <ol>
+        <li><a href="#about"><span>01.</span>About</a></li>
+        <li><a href="#experience"><span>02.</span>Experience</a></li>
+        <li><a href="#work"><span>03.</span>Work</a></li>
+        <li><a href="#contact"><span>04.</span>Contact</a></li>
+      </ol>
+      <a class="btn-resume" href="./assets/Anil_Lead_Software_Engineer.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </header>
+
+  <aside class="rail rail-left" aria-label="Social">
+    <a href="https://github.com/anil-android-flutter" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.36 1.08 2.94.83.09-.66.35-1.08.64-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85 0 1.7.11 2.5.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/c-anil-kumar-reddy-286482154/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.75V20h3.19V8.5zM5.34 3.5A1.85 1.85 0 1 0 5.35 7.2 1.85 1.85 0 0 0 5.34 3.5zM20.25 20h-3.18v-5.6c0-1.34-.03-3.06-1.86-3.06-1.87 0-2.16 1.46-2.16 2.96V20H9.87V8.5h3.05v1.57h.04c.42-.8 1.46-1.64 3.01-1.64 3.22 0 3.28 2.12 3.28 4.87V20z"/></svg>
+    </a>
+    <a href="mailto:anilkumarreddy.c17@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+    </a>
+    <a href="tel:+919343720367" aria-label="Phone">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.2a12 12 0 0 0 6.3 6.3l1.2-2 4 1.5v3A16 16 0 0 1 6.5 3.5z"/></svg>
+    </a>
+    <i></i>
+  </aside>
+
+  <aside class="rail rail-right" aria-hidden="true">
+    <a href="mailto:anilkumarreddy.c17@gmail.com">anilkumarreddy.c17@gmail.com</a>
+    <i></i>
+  </aside>
+
+  <main id="top">
+    <section class="hero" id="content">
+      <p class="intro-line hero-anim">Hi, my name is</p>
+      <h1 class="hero-anim">Anil Kumar Reddy.</h1>
+      <h2 class="hero-anim">I build mobile products that ship.</h2>
+      <p class="hero-copy hero-anim">Lead Mobile Engineer in Hyderabad. Ten years across five companies — Flutter, Android, React Native, .NET and web. Clients hire me to own the product from architecture to a live listing, and to run the team that ships it.</p>
+      <div class="hero-actions hero-anim">
+        <a class="btn-outline" href="#work">View my work</a>
+        <p class="avail"><i></i> Open for freelance &amp; selected roles</p>
+      </div>
+      <ul class="proof hero-anim">
+        <li><strong>10+</strong><span>Years shipping apps</span></li>
+        <li><strong>5</strong><span>Companies · 2016–now</span></li>
+        <li><strong>13+</strong><span>Production products</span></li>
+        <li><strong>Lead</strong><span>Team of 4, plan to live</span></li>
+      </ul>
+    </section>
+
+    <section class="block" id="about">
+      <h2 class="numbered"><span>01.</span> About me</h2>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>I am a lead who still writes the code. Ten years in production: Java Android → Kotlin → Flutter, plus React Native, .NET and web when the product needs it.</p>
+          <p>Education, food delivery, school transport, inventory and children’s audio — those are live products on Android, iOS and the web, not a short list of demos. I drop to native when GPS, camera, face recognition or platform APIs need it.</p>
+          <p>You can expect architecture, a team that delivers, store submission and production support — not only screens.</p>
+        </div>
+        <div class="portrait-wrap">
+          <img src="./assets/anil.jpg" alt="Anil Kumar Reddy" width="320" height="320">
+        </div>
+      </div>
+      <ul class="skill-row" aria-label="Skills">
+        <li><img src="./assets/skills/flutter.svg" alt="" width="28" height="28"><span>Flutter</span></li>
+        <li><img src="./assets/skills/dart.svg" alt="" width="28" height="28"><span>Dart</span></li>
+        <li><img src="./assets/skills/android.svg" alt="" width="28" height="28"><span>Android</span></li>
+        <li><img src="./assets/skills/kotlin.svg" alt="" width="28" height="28"><span>Kotlin</span></li>
+        <li><img src="./assets/skills/java.svg" alt="" width="28" height="28"><span>Java</span></li>
+        <li><img src="./assets/skills/react.svg" alt="" width="28" height="28"><span>React Native</span></li>
+        <li><img src="./assets/skills/dotnet.svg" alt="" width="28" height="28"><span>.NET</span></li>
+        <li><img src="./assets/skills/firebase.svg" alt="" width="28" height="28"><span>Firebase</span></li>
+        <li><img src="./assets/skills/mysql.svg" alt="" width="28" height="28"><span>MySQL</span></li>
+        <li><img src="./assets/skills/razorpay.svg" alt="" width="28" height="28"><span>Razorpay</span></li>
+        <li><img src="./assets/skills/html5.svg" alt="" width="28" height="28"><span>Web</span></li>
+        <li><img src="./assets/skills/googleplay.svg" alt="" width="28" height="28"><span>Google Play</span></li>
+        <li><img src="./assets/skills/apple.svg" alt="" width="28" height="28"><span>App Store</span></li>
+        <li><img src="./assets/skills/git.svg" alt="" width="28" height="28"><span>Git</span></li>
+      </ul>
+      <ul class="owns">
+        <li>
+          <p>Architecture</p>
+          <p>App structure, APIs, Firebase, and the path from plan to a store listing.</p>
+        </li>
+        <li>
+          <p>Native hard parts</p>
+          <p>GPS, camera, face-recognition attendance, payments, video, push and offline.</p>
+        </li>
+        <li>
+          <p>Lead delivery</p>
+          <p>Sprint planning, a team of 4, reviews, RCA and talking to the client.</p>
+        </li>
+        <li>
+          <p>More than Flutter</p>
+          <p>React Native, .NET apps, and web admin / product sites end to end.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="block" id="experience">
+      <h2 class="numbered"><span>02.</span> Where I’ve worked</h2>
+      <div class="jobs">
+        <div class="job-tabs" role="tablist" aria-label="Companies">
+          <button type="button" role="tab" aria-selected="true" data-job="0">Independent</button>
+          <button type="button" role="tab" aria-selected="false" data-job="1">Binary Search</button>
+          <button type="button" role="tab" aria-selected="false" data-job="2">Sruta Digital Solutions</button>
+          <button type="button" role="tab" aria-selected="false" data-job="3">iGuru Portal Service</button>
+          <button type="button" role="tab" aria-selected="false" data-job="4">Blewsoft Technologies</button>
+        </div>
+        <div class="job-panels">
+          <article class="job-panel is-on" role="tabpanel">
+            <h3>Independent Consultant <span>@ Freelance</span></h3>
+            <p class="when">2025 — Present</p>
+            <ul>
+              <li>Own Flutter product engineering with the client — architecture through store launch.</li>
+              <li>Temple Girl Kids: Android, iOS, web admin, Firebase, Razorpay, Play and App Store — 40K+ downloads, 3K+ subscriptions.</li>
+              <li>Available for freelance and selected full-time lead roles.</li>
+            </ul>
+          </article>
+          <article class="job-panel" role="tabpanel" hidden>
+            <h3>Lead Software Engineer <span>@ The Binary Search</span></h3>
+            <p class="when">2024 — 2025</p>
+            <ul>
+              <li>Led My Kitchen for a US-based food company (order, delivery, dine-in) — plan through execution as Lead Software Engineer.</li>
+              <li>Maintained a team of 4 and owned end-to-end deliverables. Built in Flutter and .NET; AWS was handled by a separate team.</li>
+              <li>GPS tracking, split payments, reservations, group booking and group orders — plus store-style order place and delivery.</li>
+            </ul>
+          </article>
+          <article class="job-panel" role="tabpanel" hidden>
+            <h3>Senior Software Engineer <span>@ Sruta Digital Solutions Pvt. Ltd.</span></h3>
+            <p class="when">2022 — 2024</p>
+            <ul>
+              <li>Patasala: parent, staff and admin apps — live bus GPS, homework, fees, class diary — 150+ schools, 80K+ students.</li>
+              <li>Native Android face-recognition attendance alongside Flutter.</li>
+              <li>Dashboards, APIs and production support.</li>
+            </ul>
+          </article>
+          <article class="job-panel" role="tabpanel" hidden>
+            <h3>Senior Software Developer <span>@ iGuru Portal Service Pvt. Ltd.</span></h3>
+            <p class="when">2018 — 2022</p>
+            <ul>
+              <li>School platform for parents, teachers and admins — attendance, homework, fee collection, online classes, exams and results.</li>
+              <li>Native Android (Java → Kotlin): Zoom live classes, online and competitive exams, Firebase chat, payments and push.</li>
+              <li>Best Employee Award.</li>
+            </ul>
+          </article>
+          <article class="job-panel" role="tabpanel" hidden>
+            <h3>Software Engineer <span>@ Blewsoft Technologies Pvt. Ltd.</span></h3>
+            <p class="when">2016 — 2018</p>
+            <ul>
+              <li>Shipped native Android apps from concept to production — finance, utilities and media.</li>
+              <li>Owned the full loop: requirements, build, testing and Play release.</li>
+              <li>Best Employee Award.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="work">
+      <h2 class="numbered"><span>03.</span> Some things I’ve built</h2>
+      <p class="block-lead">Selected products from ten years — education, delivery, schools, audio and inventory. The rest of the timeline is in Experience and the resume.</p>
+
+      <article class="feat">
+        <div class="feat-media feat-ill tile-tgk-ill">
+          <img src="./assets/ill-tgk.jpg" alt="Temple Girl Kids — bedtime audio stories">
+        </div>
+        <div class="feat-copy">
+          <p class="feat-kicker">Featured · 40K+ downloads</p>
+          <h3>Temple Girl Kids</h3>
+          <p>Children’s audio stories — 40K+ downloads and 3K+ subscriptions. I owned it end to end: Flutter apps, Firebase, Razorpay, web admin, Play and App Store.</p>
+          <ul class="mini-tags"><li>Flutter</li><li>Firebase</li><li>Razorpay</li><li>iOS · Android · Web</li></ul>
+          <div class="feat-links">
+            <a href="./work/temple-girl-kids.html">Case study ↗</a>
+            <a href="https://play.google.com/store/apps/details?id=com.templegirlkids.templegirl" target="_blank" rel="noopener">Play ↗</a>
+            <a href="https://apps.apple.com/us/app/temple-girl-kids/id6772048283" target="_blank" rel="noopener">App Store ↗</a>
           </div>
         </div>
-        <div>
-          <ul class="proj-highlights">
-            <li>Led complete Flutter architecture — modular, scalable, clean structure</li>
-            <li>Direct client &amp; stakeholder communication, requirement translation</li>
-            <li>Sprint planning, delivery timelines, and feature prioritization</li>
-            <li>Owned production deployments, post-release stability &amp; RCA</li>
-            <li>Mentored developers, enforced code standards via regular reviews</li>
-            <li>Integrated AI tooling to boost team delivery speed</li>
-          </ul>
-        </div>
-      </div>
+      </article>
 
-      <!-- Expense Tracker -->
-      <div class="proj-card">
-        <div class="freelance-pill">✦ Freelance · Built in 1 week</div>
-        <div class="proj-icon amber">💸</div>
-        <div class="proj-type">Freelance · AI-assisted</div>
-        <div class="proj-name">Daily Expense Manager</div>
-        <div class="proj-desc">Complete expense tracking app built solo in one week using Flutter + AI-assisted development. Full analytics, budgets, category breakdowns, and offline-first local storage.</div>
-        <div class="proj-tags">
-          <span class="tag">Flutter</span>
-          <span class="tag amber">SQLite</span>
-          <span class="tag">Charts</span>
-          <span class="tag">Provider</span>
-          <span class="tag amber">Offline-first</span>
+      <article class="feat feat-alt">
+        <div class="feat-media feat-ill tile-reso-ill">
+          <img src="./assets/ill-reso.jpg" alt="Resonance e-Learning — video lessons and exams">
         </div>
-      </div>
-
-      <!-- Kids Audio -->
-      <div class="proj-card">
-        <div class="freelance-pill">✦ Freelance · In Progress</div>
-        <div class="proj-icon pink">🎧</div>
-        <div class="proj-type">Freelance · Building Now</div>
-        <div class="proj-name">Kids Audio Storytelling</div>
-        <div class="proj-desc">Premium subscription platform for kids with Firebase backend, background audio playback, sleep timer, offline downloads, and Google In-App Purchases with subscription management.</div>
-        <div class="proj-tags">
-          <span class="tag">Flutter</span>
-          <span class="tag blue">Firebase</span>
-          <span class="tag pink">In-App Purchases</span>
-          <span class="tag">Audio Service</span>
-          <span class="tag blue">Firestore</span>
-        </div>
-      </div>
-
-      <!-- ResoCLASS -->
-      <div class="proj-card featured">
-        <div>
-          <div class="proj-icon blue">🎓</div>
-          <div class="proj-type">Professional · Flutter · Live on Google Play</div>
-          <div class="proj-name">ResoCLASS – E-Learning Platform</div>
-          <div class="proj-desc">Comprehensive e-learning app built in Flutter for Resonance Hyderabad — one of India's leading competitive exam coaching institutes. Delivers structured video content, live practice tests, and detailed performance analytics for JEE and advanced exam students.</div>
-          <div style="margin-top:14px">
-            <a href="https://play.google.com/store/apps/details?id=com.resonancehyderabad.resoclass&hl=en_IN" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--accent2);text-decoration:none;border:1px solid rgba(56,189,248,0.25);padding:5px 12px;border-radius:8px;background:rgba(56,189,248,0.06);">
-              ▶ View on Google Play ↗
-            </a>
+        <div class="feat-copy">
+          <p class="feat-kicker">Education · 10,000+ downloads</p>
+          <h3>Resonance e-Learning</h3>
+          <p>Competitive exam learning for Resonance Hyderabad. Video lessons, timed exams, reports, sync and push. Android and iOS.</p>
+          <ul class="mini-tags"><li>Flutter</li><li>Firebase</li><li>Video</li></ul>
+          <div class="feat-links">
+            <a href="https://play.google.com/store/apps/details?id=com.resonancehyderabad.resoclass&amp;hl=en_IN" target="_blank" rel="noopener">Play ↗</a>
+            <a href="https://apps.apple.com/us/app/resonance-e-learning/id6499460371" target="_blank" rel="noopener">App Store ↗</a>
           </div>
         </div>
-        <div>
-          <ul class="proj-highlights">
-            <li>Structured video content with visual aids, animations, and in-depth explanations per subject</li>
-            <li>Practice tests that simulate real exam environments — format, time limits, and pressure</li>
-            <li>Detailed performance reports: scores, time taken, proficiency areas, and weak spots</li>
-            <li>Online and offline exam modules with consistent cross-region scheduling</li>
-            <li>Multi-role architecture supporting students, parents, and admins in a single app</li>
-            <li>Push notifications and real-time updates for class schedules and results</li>
-          </ul>
-          <div class="proj-tags" style="margin-top:16px">
-            <span class="tag">Flutter</span>
-            <span class="tag blue">Firebase</span>
-            <span class="tag amber">Video Streaming</span>
-            <span class="tag">Practice Tests</span>
-            <span class="tag blue">Analytics</span>
-            <span class="tag">Push Notifications</span>
+      </article>
+
+      <article class="feat">
+        <div class="feat-media feat-ill tile-kitchen">
+          <img src="./assets/ill-kitchen.jpg" alt="My Kitchen — orders, delivery and dine-in">
+        </div>
+        <div class="feat-copy">
+          <p class="feat-kicker">Lead · US food delivery</p>
+          <h3>My Kitchen</h3>
+          <p>US-based food delivery platform: place orders, live GPS delivery, split payments, reservations, group booking and group orders. Lead Software Engineer — team of 4, plan through delivery. Flutter and .NET; AWS handled by a separate team.</p>
+          <ul class="mini-tags"><li>Flutter</li><li>.NET</li><li>GPS</li><li>Lead · team of 4</li></ul>
+        </div>
+      </article>
+
+      <article class="feat feat-alt">
+        <div class="feat-media feat-ill tile-patasala-ill">
+          <img src="./assets/ill-patasala.jpg" alt="Patasala — school apps, GPS buses and attendance">
+        </div>
+        <div class="feat-copy">
+          <p class="feat-kicker">150+ schools · 80K+ students</p>
+          <h3>Patasala</h3>
+          <p>School software for parents, staff and admins: live bus GPS, native Android face-recognition attendance, homework, fees and class diary. Used by 150+ schools and 80K+ students.</p>
+          <ul class="mini-tags"><li>Flutter</li><li>Android</li><li>GPS</li></ul>
+          <div class="feat-links">
+            <a href="https://play.google.com/store/apps/details?id=patasala.teacher&amp;hl=en_IN" target="_blank" rel="noopener">Play ↗</a>
+            <a href="https://apps.apple.com/us/app/patasala-parent/id1418416623" target="_blank" rel="noopener">App Store ↗</a>
           </div>
         </div>
-      </div>
+      </article>
 
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="sec-label">Career</div>
-    <div class="sec-title">Work Experience</div>
-    <div class="exp-list">
-
-      <div class="exp-item">
-        <div class="exp-line">
-          <div class="exp-dot"></div>
-          <div class="exp-connector"></div>
-        </div>
-        <div>
-          <div class="exp-period">Dec 2024 – Dec 2025</div>
-          <div class="exp-role">Lead Software Engineer</div>
-          <div class="exp-company">The Binary Search · My Kitchen Food Delivery App</div>
-          <ul class="exp-points">
-            <li>Led Flutter architecture for geo-location food delivery app with multi-country support</li>
-            <li>Owned sprint planning, delivery timelines, and critical production incident management (RCA)</li>
-            <li>Mentored developers, conducted code reviews, and enforced best practices</li>
-            <li>Leveraged AI tooling to improve team efficiency and delivery speed</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag">Flutter</span>
-            <span class="tag blue">Firebase</span>
-            <span class="tag">Architecture</span>
-            <span class="tag">Team Lead</span>
+      <h3 class="other-title">More production work</h3>
+      <div class="other-grid">
+        <article>
+          <div class="card-media tile-iguru">
+            <img src="./assets/ill-iguru.jpg" alt="iGuru education — classes and school apps">
           </div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-line">
-          <div class="exp-dot dim"></div>
-          <div class="exp-connector"></div>
-        </div>
-        <div>
-          <div class="exp-period">Jan 2022 – Nov 2024</div>
-          <div class="exp-role">Senior Software Engineer</div>
-          <div class="exp-company">Sruta Digital Solutions · Patasala &amp; Bus Tracking</div>
-          <ul class="exp-points">
-            <li>Built large-scale school management Flutter apps for parents, staff, and administrators</li>
-            <li>Implemented live GPS tracking and face recognition attendance on Native Android</li>
-            <li>Handled production incidents, RCA, and financial management dashboards</li>
-            <li>Designed reusable clean architecture components for long-term maintainability</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag">Flutter</span>
-            <span class="tag blue">Android</span>
-            <span class="tag amber">GPS Tracking</span>
-            <span class="tag">Clean Arch</span>
+          <p class="card-num">01</p>
+          <h4>iGuru Education</h4>
+          <p>Four years (2018–2022) on parent, teacher and admin apps: attendance, homework, fees, Zoom classes, online and competitive exams, results, chat and payments.</p>
+          <p class="mini">Kotlin · Java · Firebase</p>
+        </article>
+        <article>
+          <div class="card-media tile-bavya">
+            <img src="./assets/apps/bavya-icon.png" alt="Bavya Consumption logo">
           </div>
-        </div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-line">
-          <div class="exp-dot dim"></div>
-          <div class="exp-connector"></div>
-        </div>
-        <div>
-          <div class="exp-period">Aug 2018 – Jan 2022</div>
-          <div class="exp-role">Senior Software Developer</div>
-          <div class="exp-company">iGuru Portal Services · iGuru &amp; iGuru Prep</div>
-          <ul class="exp-points">
-            <li>Developed multi-role education platforms (parent, admin, staff) with live Zoom class integration</li>
-            <li>Migrated legacy Java applications to Kotlin, significantly reducing crash rates</li>
-            <li>Built online and offline exam modules with UTC-based scheduling across regions</li>
-            <li>Integrated payment gateways and real-time Firebase chat</li>
-          </ul>
-          <div class="proj-tags">
-            <span class="tag">Kotlin</span>
-            <span class="tag">Java</span>
-            <span class="tag blue">Firebase</span>
-            <span class="tag pink">Payments</span>
+          <p class="card-num">02</p>
+          <h4>Bavya Consumption</h4>
+          <p>Warehouse inventory app. Usage vs approved requests. 500+ downloads.</p>
+          <p class="mini"><a href="https://play.google.com/store/apps/details?id=com.consumption.bavya.consumptionapp" target="_blank" rel="noopener">Google Play ↗</a></p>
+        </article>
+        <article>
+          <div class="card-media tile-expense" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="72" height="72" fill="none" aria-hidden="true">
+              <rect x="10" y="14" width="44" height="36" rx="6" stroke="currentColor" stroke-width="2.2"/>
+              <path d="M10 26h44" stroke="currentColor" stroke-width="2.2"/>
+              <circle cx="44" cy="38" r="5" stroke="currentColor" stroke-width="2.2"/>
+            </svg>
           </div>
-          <div><span class="award-pill">🏆 Best Employee Award</span></div>
-        </div>
+          <p class="card-num">03</p>
+          <h4>Daily Expense Tracker</h4>
+          <p>Designed, built and published independently. Offline SQLite Flutter app.</p>
+          <p class="mini"><a href="https://play.google.com/store/apps/details?id=com.dailyexpensetracker.moneymanager" target="_blank" rel="noopener">Google Play ↗</a></p>
+        </article>
+        <article>
+          <div class="card-media tile-blew" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="72" height="72" fill="none" aria-hidden="true">
+              <rect x="18" y="8" width="28" height="48" rx="6" stroke="currentColor" stroke-width="2.2"/>
+              <circle cx="32" cy="48" r="2.2" fill="currentColor"/>
+            </svg>
+          </div>
+          <p class="card-num">04</p>
+          <h4>Android products · Blewsoft</h4>
+          <p>2016–2018: native Android from concept to Play — finance, utilities and media. Full loop: build, test and release. Best Employee Award.</p>
+          <p class="mini">Java · Android · Play</p>
+        </article>
       </div>
+    </section>
 
-      <div class="exp-item">
-        <div class="exp-line">
-          <div class="exp-dot dim"></div>
-        </div>
-        <div>
-          <div class="exp-period">Jan 2016 – Jan 2018</div>
-          <div class="exp-role">Software Engineer</div>
-          <div class="exp-company">Blewsoft Technologies · Finance, Utilities &amp; Media</div>
-          <ul class="exp-points">
-            <li>Built Android apps from concept to production across finance, utility, and media domains</li>
-            <li>Established strong foundation in Android fundamentals, REST APIs, and local data storage</li>
-          </ul>
-          <div><span class="award-pill">🏆 Best Employee Award</span></div>
-        </div>
+    <section class="block contact-block" id="contact">
+      <p class="feat-kicker">04. What’s next</p>
+      <h2>Let’s build the app.</h2>
+      <p>Have a product idea, an existing app that needs a lead, or a team that needs Flutter / Android ownership? Send a short note — platform, timeline, and what “done” looks like.</p>
+      <a class="btn-outline btn-lg" href="mailto:anilkumarreddy.c17@gmail.com">Say hello</a>
+      <p class="contact-meta">
+        <a href="mailto:anilkumarreddy.c17@gmail.com">anilkumarreddy.c17@gmail.com</a><br>
+        <a href="tel:+919343720367">+91 93437 20367</a> · Hyderabad
+      </p>
+      <div class="mobile-socials">
+        <a href="https://github.com/anil-android-flutter" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/c-anil-kumar-reddy-286482154/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:anilkumarreddy.c17@gmail.com">Email</a>
       </div>
+    </section>
+  </main>
 
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="sec-label">Technical</div>
-    <div class="sec-title">Skills &amp; Technologies</div>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-cat">Mobile Development</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Flutter</span>
-          <span class="skill-pill">Dart</span>
-          <span class="skill-pill">Android</span>
-          <span class="skill-pill">Kotlin</span>
-          <span class="skill-pill">Java</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-cat">Architecture &amp; Patterns</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Clean Architecture</span>
-          <span class="skill-pill">MVVM</span>
-          <span class="skill-pill">MVP</span>
-          <span class="skill-pill">MVI</span>
-          <span class="skill-pill">Repository Pattern</span>
-          <span class="skill-pill">Modular</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-cat">Firebase</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Authentication</span>
-          <span class="skill-pill">Firestore</span>
-          <span class="skill-pill">Storage</span>
-          <span class="skill-pill">FCM</span>
-          <span class="skill-pill">Analytics</span>
-          <span class="skill-pill">Crashlytics</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-cat">State Management &amp; Data</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Provider</span>
-          <span class="skill-pill">Bloc</span>
-          <span class="skill-pill">SQLite</span>
-          <span class="skill-pill">Room</span>
-          <span class="skill-pill">REST APIs</span>
-          <span class="skill-pill">Retrofit</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-cat">Tools &amp; DevOps</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Git / GitHub</span>
-          <span class="skill-pill">Codemagic</span>
-          <span class="skill-pill">GitHub Actions</span>
-          <span class="skill-pill">Android Studio</span>
-          <span class="skill-pill">Postman</span>
-          <span class="skill-pill">Jira</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-cat">Leadership &amp; Soft Skills</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Team Lead</span>
-          <span class="skill-pill">Mentorship</span>
-          <span class="skill-pill">Client Communication</span>
-          <span class="skill-pill">Sprint Planning</span>
-          <span class="skill-pill">AI Dev Workflows</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-card">
-      <div class="contact-heading">Let's build something great.</div>
-      <div class="contact-sub">Open for freelance projects, full-time roles, and collaborations · Hyderabad, India</div>
-      <div class="contact-links">
-        <a href="mailto:anilkumarreddy.c17@gmail.com" class="contact-link primary">✉ anilkumarreddy.c17@gmail.com</a>
-        <a href="tel:+919343720367" class="contact-link">📞 +91 93437-20367</a>
-        <a href="https://www.linkedin.com/in/c-anil-kumar-reddy-286482154/" target="_blank" rel="noopener" class="contact-link">in LinkedIn ↗</a>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>Anil Kumar Reddy · B.Tech ECE, Madanapalle Institute of Technology &amp; Science, 2014</p>
-</footer>
-
+  <footer class="site-footer">Designed &amp; built by Anil Kumar Reddy · © 2026</footer>
+  <script src="./js/main.js" defer></script>
 </body>
 </html>
