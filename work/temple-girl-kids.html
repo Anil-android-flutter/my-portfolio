@@ -12,18 +12,17 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
   <div class="fx" aria-hidden="true">
     <div class="fx-vignette"></div>
-    <div class="fx-wallpaper"></div>
     <div class="fx-orbs"></div>
     <div class="fx-grain"></div>
   </div>
   <header class="site-header">
-    <a class="logo" href="../index.html" aria-label="Home">A</a>
+    <a class="logo" href="../index.html" aria-label="Anil Kumar Reddy — Home">Anil</a>
     <nav class="nav-links">
       <a class="btn-resume" href="../assets/Anil_Lead_Software_Engineer.pdf" target="_blank" rel="noopener">Resume</a>
     </nav>
@@ -36,36 +35,86 @@
     <div class="feat-visual">
       <img src="../assets/apps/tgk-banner.png" alt="Temple Girl Kids — bedtime stories">
     </div>
-    <div class="shot-strip">
-      <div class="device-shot"><img src="../assets/apps/tgk-logo.png" alt="Temple Girl Kids logo"></div>
+    <div class="phone-cluster" style="margin: 28px 0 16px;">
+      <figure class="phone tilt-l">
+        <img src="../assets/apps/tgk-shot1.jpg?v=hd3" alt="Explore collections" width="390" height="844">
+      </figure>
+      <figure class="phone phone-hero">
+        <img src="../assets/apps/tgk-shot0.jpg?v=hd3" alt="Home with continue listening" width="390" height="844">
+      </figure>
+      <figure class="phone tilt-r">
+        <img src="../assets/apps/tgk-shot2.jpg?v=hd3" alt="Story list with player" width="390" height="844">
+      </figure>
     </div>
+    <a class="site-card site-card-study" href="https://www.templegirl.com/" target="_blank" rel="noopener">
+      <div class="site-card-bar">
+        <span class="site-card-dots" aria-hidden="true"></span>
+        <span class="site-card-url">templegirl.com</span>
+        <span class="site-card-go">Visit ↗</span>
+      </div>
+      <img src="../assets/apps/templegirl-web.jpg?v=hd5" alt="templegirl.com website" width="1200" height="420" decoding="async">
+    </a>
     <div class="store-links">
+      <a class="store-btn" href="https://www.templegirl.com/" target="_blank" rel="noopener">templegirl.com</a>
       <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.templegirlkids.templegirl" target="_blank" rel="noopener">Google Play</a>
       <a class="store-btn" href="https://apps.apple.com/us/app/temple-girl-kids/id6772048283" target="_blank" rel="noopener">App Store</a>
-      <a class="store-btn" href="https://www.templegirl.com/" target="_blank" rel="noopener">templegirl.com</a>
     </div>
     <div class="feat-meta">
       <div class="meta"><small>Role</small>Lead Mobile &amp; Product Developer</div>
       <div class="meta"><small>Reach</small>40K+ downloads · 3K+ subscriptions</div>
-      <div class="meta"><small>Platforms</small>Android · iOS · Web</div>
+      <div class="meta"><small>Platforms</small>Android · iOS · Web · Admin</div>
       <div class="meta"><small>Backend</small>Firebase</div>
       <div class="meta"><small>Payments</small>Razorpay · stores</div>
+      <div class="meta"><small>Website</small>templegirl.com</div>
     </div>
     <article class="prose">
+      <h2>The product</h2>
+      <ol class="seq" aria-label="Product sequence">
+        <li>
+          <span>01 Discover</span>
+          <figure class="phone">
+            <img src="../assets/apps/tgk-shot1.jpg?v=hd3" alt="Explore collections" width="390" height="844">
+          </figure>
+        </li>
+        <li>
+          <span>02 Listen</span>
+          <figure class="phone">
+            <img src="../assets/apps/tgk-shot0.jpg?v=hd3" alt="Home with continue listening" width="390" height="844">
+          </figure>
+        </li>
+        <li>
+          <span>03 Browse</span>
+          <figure class="phone">
+            <img src="../assets/apps/tgk-shot2.jpg?v=hd3" alt="Story list with player" width="390" height="844">
+          </figure>
+        </li>
+        <li class="seq-ship">
+          <span>04 Ship</span>
+          <p class="stat-pair">
+            <span><strong>40K+</strong> downloads</span>
+            <span><strong>3K+</strong> subscriptions</span>
+          </p>
+        </li>
+      </ol>
       <h2>The challenge</h2>
-      <p>Bedtime temple stories needed a real product: playback on phones, content the team could manage themselves, and a subscription path that could go live on stores — not a prototype player.</p>
+      <p>Bedtime temple stories needed a real product: playback on phones, content the team could manage themselves, a subscription path that could go live on stores, and a marketing site that could explain the product and convert parents — not a prototype player.</p>
       <h2>The solution</h2>
-      <p>A cross-platform Flutter system: Android and iOS apps, Flutter web admin, Firebase for auth, data, media and functions, Razorpay for subscriptions, plus a marketing site at templegirl.com.</p>
+      <p>A cross-platform Flutter system: Android and iOS apps, Flutter web admin, Firebase for auth, data, media and functions, Razorpay for subscriptions, plus the marketing site at <a href="https://www.templegirl.com/" target="_blank" rel="noopener">templegirl.com</a>.</p>
       <h2>What I built</h2>
       <ul class="list">
         <li>Flutter Android and iOS storytelling apps</li>
         <li>Flutter Web admin and content management</li>
         <li>Firebase Authentication, Firestore, Storage, Analytics and Cloud Functions</li>
         <li>Subscription workflows and Razorpay</li>
+        <li>Marketing website for subscribe / listen / convert</li>
         <li>Store submissions and post-launch support</li>
       </ul>
-      <h2>Engineering highlights</h2>
-      <p>One codebase across consumer apps and admin. Backend and payments treated as part of the product, not extras after the UI.</p>
+      <h2>Decisions that mattered</h2>
+      <ul class="list">
+        <li>One Flutter codebase across consumer apps and admin — faster shipping, one team language.</li>
+        <li>Backend and payments treated as product surfaces, not afterthoughts after UI.</li>
+        <li>Website as part of the funnel: parents discover, subscribe, then open the app.</li>
+      </ul>
       <h2>Production delivery</h2>
       <p>App Store, Google Play and web — owned from architecture through launch. Live with 40K+ downloads and 3K+ subscriptions.</p>
       <p style="margin-top:40px;"><a class="btn-outline" href="../index.html#contact">Say hello</a></p>
